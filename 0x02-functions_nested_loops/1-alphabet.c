@@ -1,11 +1,11 @@
 #include "main.h"
 
 /**
- * main - Declare a variable and assign alphabet value
+ * print_alphabet - Declare a variable and assign alphabet value
  * print the alphabet in lowercase
  * followed by a new line
  *
- * Return: void 
+ * Return: void
  */
 void print_alphabet(void)
 {
