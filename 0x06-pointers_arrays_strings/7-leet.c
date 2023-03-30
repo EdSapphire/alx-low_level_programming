@@ -1,11 +1,12 @@
 #include "main.h"
 #include <stdio.h>
+#include <string.h>
 
 /**
  * leet - A function that encodes a string into 1337
  * @src: String to encode
- *
- * Return: string
+ * 
+ * Return: Encoded string
  */
 char *leet(char *str)
 {
