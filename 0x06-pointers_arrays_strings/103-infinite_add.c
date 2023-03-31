@@ -1,14 +1,15 @@
 #include "main.h"
 #include <stdio.h>
 
+char *add_strings(char *n1, char *n2, char *r, int r_index);
+char *infinite_add(char *n1, char *n2, char *r, int size_r);
+
 /**
  * add_strings - Adds the numbers stored in two strings
- * infinite_add - A function that adds two numbers
  * @n1: First number
  * @n2: Second number
  * @r: Buffer that store the result
  * @r_index: The current index of the buffer
- * @size_r: Buffer size
  *
  * Return: Pointer to the result
  */
@@ -51,6 +52,10 @@ char *add_strings(char *n1, char *n2, char *r, int r_index)
 }
 /**
  * infinite_add - Adds two numbers
+ * @n1: First number
+ * @n2: Second number
+ * @r: Buffer that store the result
+ * @size_r: Buffer size
  *
  * Return: Result pointer
  */
