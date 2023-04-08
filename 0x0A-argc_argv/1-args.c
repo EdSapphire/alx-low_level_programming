@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 
 /**
  * main - A function that prints the number of arguments
@@ -14,9 +13,9 @@ int main(int argc, char *argv[])
 	int i;
 	(void)argv;
 
-	for (i = 0; i < argc; i++)
+	for (i = 0; i <= argc; i++)
 	{}
-	printf("%d\n", i - 1);
+	printf("%d\n", i - 2);
 	
 	return (0);
 }
