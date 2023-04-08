@@ -3,7 +3,6 @@
 
 /**
  * main - A function that prints the number of arguments
- * passed into it
  * @argc: Counts the number of argument
  * @argv: A pointer of array of strings
  *
@@ -11,9 +10,7 @@
  */
 int main(int argc, char *argv[])
 {
-	(void)argv;
-
-	printf("%d\n", argc - 1);
-	
+	(void) argv;
+	printf("%d\n", argc - 1);	
 	return (0);
 }
