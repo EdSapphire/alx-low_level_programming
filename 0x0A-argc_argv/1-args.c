@@ -1,3 +1,4 @@
+#include "main.h"
 #include <stdio.h>
 
 /**
@@ -13,9 +14,9 @@ int main(int argc, char *argv[])
 	int i;
 	(void)argv;
 
-	for (i = 0; i <= argc; i++)
+	for (i = 0; i < argc; i++)
 	{}
-	printf("%d\n", i - 2);
+	printf("%d\n", i - 1);
 	
 	return (0);
 }
