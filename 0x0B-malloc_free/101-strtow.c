@@ -87,7 +87,7 @@ char **strtow(char *str)
 		}
 		for (a = 0; a < alpha; a++)
 			s[w][a] = str[index++];
-		s[w][a] ='\0';
+		s[w][a] = '\0';
 	}
 	s[w] = NULL;
 	return (s);
