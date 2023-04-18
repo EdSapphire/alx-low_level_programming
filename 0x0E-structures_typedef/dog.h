@@ -1,13 +1,11 @@
-#include <stdio.h>
-
 #ifndef DOG_H
 #define DOG_H
 
 /**
- * struct dog - Defines a new type
- * @name: First member
- * @age: Second member
- * @owner: Third member
+ * struct dog - Defines a new dog
+ * @name: Dog name
+ * @age: Dog age
+ * @owner: Dog owner
  *
  * Description: A struct that assign the name, age and owner of a new dog
  */
