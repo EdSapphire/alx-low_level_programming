@@ -7,7 +7,7 @@
  * add_node - A function that adds a new node at the
  * beginning of a list_t list
  * @head: Address of elment
- * @str: The list
+ * @str: The list_t list
  *
  * Return: The address of element or NULL
  */
@@ -25,8 +25,8 @@ list_t *add_node(list_t **head, const char *str)
 	
 	begin->str = strdup(str);
 	begin->len = len;
-	begin->next = (*head);
-	(*head) = begin;
+	begin->next = *head;
+	*head = begin;
 	
 	return (*head);
 }
