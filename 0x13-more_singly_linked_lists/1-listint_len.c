@@ -1,12 +1,9 @@
-#include <stdlib.h>
-#include <string.h>
-#include <stdio.h>
 #include "lists.h"
 
 /**
  * listint_len - A function that returns number of elements in
  * a linked listint_t list
- * @h: Listint_t list
+ * @h: Pointer to the address of Listint_t list head
  *
  * Return: Number of elements
  */
