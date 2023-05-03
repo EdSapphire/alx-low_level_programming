@@ -11,7 +11,7 @@ size_t free_listint_safe(listint_t **h);
  */
 size_t type_listint_free(const listint_t *head)
 {
-        const listint_t *num, *len;
+	const listint_t *num, *len;
         size_t pt = 1;
 
         if (head == NULL || head->next == NULL)
@@ -71,6 +71,7 @@ size_t free_listint_safe(listint_t **h)
 			*h = temp;
 		}
 	}
+
 	else
 	{
 		for (del = 0; del < pt; del++)
