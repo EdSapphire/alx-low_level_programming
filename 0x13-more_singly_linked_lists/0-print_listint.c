@@ -1,11 +1,8 @@
-#include <stdlib.h>
-#include <string.h>
-#include <stdio.h>
 #include "lists.h"
 
 /**
  * print_listint - A function that prints all elements of listint_t list
- * @h: Listint_t list
+ * @h: Pointer to the address of the head of Listint_t list
  *
  * Return: Number of nodes.
  */
