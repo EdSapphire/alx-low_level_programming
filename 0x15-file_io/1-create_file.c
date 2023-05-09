@@ -9,28 +9,25 @@
  */
 int create_file(const char *filename, char *text_content)
 {
-	int ptr, crt, rdw;
+	int pt, rd;
+	int con = 0;
 
 	if (filename == NULL)
 		return (-1);
 
-	ptr = open(filename, O_CREAT | O_WRONLY | O_TRUNC, 0600);
+	pt = open(filename, O_CREAT | O_WRONLY | O_TRUNC, 0600);
 
-	if (ptr == -1)
-		return (-1);
-
-	if (text_content != NULL)
+	if (!text_content)
 	{
-		for (rdw = 0; text_content[rdw];)
-			rdw++;
+		for (con = 0; text_content[con];)
+			con++;
 	}
 	
-	crt = write(ptr, text_content, rdw);
-
-	if (crt == -1)
+	rd = write(pt, text_content, con);
+	if (pt == -1 || rd == -1)
 		return (-1);
 
-	close(ptr);
+	close(pt);
 
 	return (1);
 }
