@@ -21,13 +21,13 @@ int create_file(const char *filename, char *text_content)
 
 	if (text_content != NULL)
 	{
-		for (crt = 0; text_content[crt]; crt++)
-			;
+		for (rdw = 0; text_content[rdw];)
+			rdw++;
 	}
 	
-	rdw = write(ptr, text_content, crt);
+	crt = write(ptr, text_content, rdw);
 
-	if (rdw == -1)
+	if (crt == -1)
 		return (-1);
 
 	close(ptr);
