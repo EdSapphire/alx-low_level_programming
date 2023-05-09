@@ -9,22 +9,25 @@
  */
 int create_file(const char *filename, char *text_content)
 {
-	int pt, rd;
-	int con = 0;
+	int pt, rd, con;
 
 	if (filename == NULL)
 		return (-1);
 
-	pt = open(filename, O_CREAT | O_WRONLY | O_TRUNC, 0600);
+	pt = open(filename, O_CREAT | O_TRUNC, O_RDWR);
 
-	if (!text_content)
+	if (pt == -1)
+		return (-1);
+
+	if (text_content == NULL)
 	{
 		for (con = 0; text_content[con];)
 			con++;
 	}
 	
 	rd = write(pt, text_content, con);
-	if (pt == -1 || rd == -1)
+	
+	if (rd == -1)
 		return (-1);
 
 	close(pt);
