@@ -4,7 +4,7 @@
 /**
  * get_endianness - A funtion that checks the endianness
  *
- * Returns: 0 for big endian and 1 for little endian.
+ * Return: 0 if big endian, 1 if little endian.
  */
 int get_endianness(void)
 {
