@@ -1,5 +1,4 @@
 #include "main.h"
-#include <string.h>
 
 /**
  * create_file - A function that creates a file
@@ -10,22 +9,26 @@
  */
 int create_file(const char *filename, char *text_content)
 {
-	int fd, wr;
-	int len = strlen(text_content);
+	int fd, t = 0;
 
 	if (filename == NULL)
 		return (-1);
-	fd = fopen(filename, O_RDWR | O_CREAT | O_TRUNC);
+
+	if (text_content == NULL)
+		text_content = "";
+
+
+	while (text_content[t] != '\0')
+	{
+		t++;
+	}
+
+	fd = open(filename, O_CREAT | O_WRONLY | O_TRUNC, 0600);
 
 	if (fd == -1)
 		return (-1);
-	if (text_content != NULL)
-	{
-		wr = write(fd, text_content, len);
-		if (wr == -1)
-			close (fd);
-		return (-1);
-	}
-	close (fd);
+
+	write(fd, text_content, t);
+
 	return (1);
 }
