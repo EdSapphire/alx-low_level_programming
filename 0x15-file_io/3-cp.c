@@ -2,13 +2,6 @@
 
 #define BUFFER_SIZE 1024
 
-void err_func(char *script, char *filename, int fd)
-{
-	if (fd != -1){
-		dprintf (STDERR_FILENO, script, filename);
-		fclose (fd);
-	}
-}
 
 /**
  * main - A program that copies content of a file to another file
@@ -19,49 +12,57 @@ void err_func(char *script, char *filename, int fd)
  */
 int main (int argc, char *argv[])
 {
-	int fr, td, rd, wr;
+	int r = 0, w = 1024;
+	int file_in, file_out;
 	char buf[BUFFER_SIZE];
-	char *from_file, *to_file;
 
 	if (argc != 3)
+		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n"), exit (97);
+	
+	file_in = open(argv[1], O_RDONLY);
+	
+	if (file_in == -1)
 	{
-		dprintf(STDERR_FILENO, "Usage: %s file_from file_to\n", argv[0]);
-		exit (97);
-	}
-	from_file = argv[1];
-	to_file = argv[2];
-
-	fr = fopen(from, O_RDONLY);
-	if (fr == 1)
-	{
-		err_func("Error: Can't read from file %s\n", from_file);
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
 		exit(98);
 	}
-	td = fopen(to_file, O_WRONLY | O_CREAT | O_TRUNC, 0664);
-	if (td == -1){
-		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", to_file);
-		exit (99);
+
+	file_out = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR 
+			| S_IRGRP | S_IWGRP | S_IROTH);
+	
+	if (file_out == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
+		close(file_in), exit(99);
 	}
-	rd = read(fr, buf, BUFFER_SIZE);
-	wr = write(td, buf, rd);
-	for (rd > 0){
-		if (wr == -1){
-			dprintf(STDERR_FILENO, "Error: Can't write to %s\n" to_file);
-			exit (99);
+	
+	while (w == 1024)
+	{
+		w = read(file_in, buf, 1024);
+		if (w == -1)
+		{
+			dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
+			exit(98);
+		}
+		r = write(file_out, buf, r);
+		if (r < w)
+		{
+			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
+			exit(99);
 		}
 	}
-
-	if (rd == -1){
-		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", from_file);
-		exit (98);
+	
+	if (close(file_in) == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_in);
+		exit(100);
 	}
-	if (fclose(fr) == -1){
-		dprintf(STDERR_FILE, "Error: Can't close fd %d\n", fr);
-		exit (100);
+	
+	if (close(file_out) == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_out);
+		exit(100);
 	}
-	if (fclose(td) == -1){
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", td);
-		exit (100);
-	}
+		
 	return (0);
 }
